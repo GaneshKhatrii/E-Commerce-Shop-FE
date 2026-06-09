@@ -4,6 +4,7 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&display=swap');
 
 html {
   height: 100%;
@@ -35,5 +36,109 @@ body {
   // Reset the user agent margin.
   margin: 0;
   height: 100%;
+  font-family: 'M PLUS 1', sans-serif;
 }
 /* You can add global styles to this file, and also import other style files */
+
+// Variables
+// Brand Colors
+$primary-color: #ff3f6c;
+$primary-hover-color: #e91e63;
+$secondary-color: #282c3f;
+$text-primary: #282c3f;
+$text-secondary: #535766;
+$background-color: #f5f5f6;
+$white: #ffffff;
+$border-color: #d4d5d9;
+$success-color: #03a685;
+$error-color: #ff5722;
+
+// Shadows
+$card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+// Border Radius
+$border-radius-sm: 6px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+
+// Headings
+.primary-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.secondary-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.section-heading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.body-text {
+  font-size: 1rem;
+  color: $text-secondary;
+}
+
+// Buttons
+.btn-primary {
+  background-color: $primary-color;
+  border: none;
+  color: $white;
+  font-weight: 600;
+
+  &:hover {
+    background-color: $primary-hover-color;
+  }
+}
+
+.btn-secondary {
+  background-color: $secondary-color;
+  border: none;
+  color: $white;
+  font-weight: 600;
+}
+
+// Card
+.card {
+  background-color: $white;
+  border-radius: $border-radius-md;
+  box-shadow: $card-shadow;
+  padding: 1.5rem;
+}
+
+// Forms
+.form-control {
+  height: 35px;
+
+  &:focus {
+    box-shadow: none;
+    border-color: $primary-color;
+  }
+}
+
+// Basic styles
+.text-primary-custom {
+  color: $primary-color;
+}
+
+.text-secondary-custom {
+  color: $text-secondary;
+}
+
+.bg-primary-custom {
+  background-color: $primary-color;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+a {
+  color: $primary-color;
+}
