@@ -40,12 +40,10 @@ export class Login implements OnInit {
       next: (response: ApiResponse<LoginResponse>) => {
         if (response.success) {
           this.snackBar.showNotification(response.message, 'success');
-        } else {
-          this.snackBar.showNotification(response.message, 'danger');
         }
       },
-      error: () => {
-        this.snackBar.showNotification('Something went wrong. Please try again.', 'danger');
+      error: (err) => {
+        this.snackBar.showNotification(err.error.message, 'danger');
       },
     });
   }

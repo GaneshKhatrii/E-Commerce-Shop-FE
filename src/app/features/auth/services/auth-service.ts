@@ -12,10 +12,14 @@ export class AuthService {
   private readonly baseUrl = `${environment.apiUrl}/auth`;
 
   register(request: RegisterRequest) {
-    return this.http.post(`${this.baseUrl}/register`, request);
+    return this.http.post<ApiResponse<string>>(`${this.baseUrl}/register`, request);
   }
 
   login(request: LoginRequest) {
     return this.http.post<ApiResponse<LoginResponse>>(`${this.baseUrl}/login`, request);
+  }
+
+  verifyEmail(token: string) {
+    return this.http.get<ApiResponse<null>>(`${this.baseUrl}/verify-email?token=${token}`);
   }
 }

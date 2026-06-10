@@ -4,32 +4,72 @@
       <div class="card">
         <h1 class="primary-heading text-center mb-4">Create Account</h1>
 
-        <form>
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
           <div class="row">
             <div class="col-md-6 mb-3">
               <label class="form-label">First Name</label>
-              <input type="text" class="form-control" placeholder="Enter first name" />
+              <input
+                formControlName="firstName"
+                type="text"
+                class="form-control"
+                placeholder="Enter first name"
+              />
+              @if (showErrors('firstName')) {
+                <p class="text-danger">{{ showErrors('firstName') }}</p>
+              }
             </div>
 
             <div class="col-md-6 mb-3">
               <label class="form-label">Last Name</label>
-              <input type="text" class="form-control" placeholder="Enter last name" />
+              <input
+                formControlName="lastName"
+                type="text"
+                class="form-control"
+                placeholder="Enter last name"
+              />
+              @if (showErrors('lastName')) {
+                <p class="text-danger">{{ showErrors('lastName') }}</p>
+              }
             </div>
           </div>
 
           <div class="mb-3">
             <label class="form-label">Email Address</label>
-            <input type="email" class="form-control" placeholder="Enter email address" />
+            <input
+              formControlName="email"
+              type="email"
+              class="form-control"
+              placeholder="Enter email address"
+            />
+            @if (showErrors('email')) {
+              <p class="text-danger">{{ showErrors('email') }}</p>
+            }
           </div>
 
           <div class="mb-3">
             <label class="form-label">Phone Number</label>
-            <input type="tel" class="form-control" placeholder="Enter phone number" />
+            <input
+              formControlName="phoneNumber"
+              type="tel"
+              class="form-control"
+              placeholder="Enter phone number"
+            />
+            @if (showErrors('phoneNumber')) {
+              <p class="text-danger">{{ showErrors('phoneNumber') }}</p>
+            }
           </div>
 
           <div class="mb-4">
             <label class="form-label">Password</label>
-            <input type="password" class="form-control" placeholder="Create password" />
+            <input
+              formControlName="password"
+              type="password"
+              class="form-control"
+              placeholder="Create password"
+            />
+            @if (showErrors('password')) {
+              <p class="text-danger">{{ showErrors('password') }}</p>
+            }
           </div>
 
           <button type="submit" class="btn btn-primary w-100">Create Account</button>
