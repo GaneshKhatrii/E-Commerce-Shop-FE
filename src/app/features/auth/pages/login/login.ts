@@ -2,6 +2,9 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth-service';
+import { SnackBar } from '../../../../core/services/snack-bar';
+import { ApiResponse } from '../../../../core/models/api-response.model';
+import { LoginResponse } from '../../models/login-response.model';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +14,7 @@ import { AuthService } from '../../services/auth-service';
 })
 export class Login implements OnInit {
   private authService = inject(AuthService);
+  private snackBar = inject(SnackBar);
   private fb = inject(FormBuilder);
 
   // Create FormGroup or form name
@@ -22,16 +26,54 @@ export class Login implements OnInit {
 
   buildForm() {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  onLogin() {
+  onLogin(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
-    console.log(this.loginForm.value);
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (response: ApiResponse<LoginResponse>) => {
+        if (response.success) {
+          this.snackBar.showNotification(response.message, 'success');
+        } else {
+          this.snackBar.showNotification(response.message, 'danger');
+        }
+      },
+      error: () => {
+        this.snackBar.showNotification('Something went wrong. Please try again.', 'danger');
+      },
+    });
+  }
+
+  showErrors(property: string): string | null {
+    const control = this.loginForm.get(property);
+
+    if (control && control.invalid && (control.touched || control.dirty)) {
+      const errors = control.errors || {};
+
+      // Get the first error from the errors list
+      const error = Object.keys(errors)[0];
+
+      switch (error) {
+        case 'required':
+          // Capitalizes the first letter and appends the rest of the string
+          return `${property.charAt(0).toUpperCase() + property.slice(1)} is required`;
+
+        case 'email':
+          return `Enter valid email id`;
+
+        case 'minlength':
+          switch (property) {
+            case 'password':
+              return 'Password must be atleast 6 characters';
+          }
+      }
+    }
+    return null;
   }
 }

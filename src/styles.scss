@@ -142,3 +142,24 @@ $border-radius-lg: 16px;
 a {
   color: $primary-color;
 }
+
+// Notification popups styles
+.notification-success .mdc-snackbar__surface {
+  background-color: green !important;
+  color: white !important;
+}
+
+.notification-danger .mdc-snackbar__surface {
+  background-color: red !important;
+  color: white !important;
+}
+
+.notification-warning .mdc-snackbar__surface {
+  background-color: orange !important;
+  color: white !important;
+}
+
+.notification-info .mdc-snackbar__surface {
+  background-color: darkblue !important;
+  color: white !important;
+}

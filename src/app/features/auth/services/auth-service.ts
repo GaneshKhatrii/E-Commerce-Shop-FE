@@ -3,6 +3,8 @@ import { inject, Service } from '@angular/core';
 import { environment } from '../../../../environment';
 import { RegisterRequest } from '../models/register-request.model';
 import { LoginRequest } from '../models/login-request.model';
+import { ApiResponse } from '../../../core/models/api-response.model';
+import { LoginResponse } from '../models/login-response.model';
 
 @Service()
 export class AuthService {
@@ -14,6 +16,6 @@ export class AuthService {
   }
 
   login(request: LoginRequest) {
-    return this.http.post(`${this.baseUrl}/login`, request);
+    return this.http.post<ApiResponse<LoginResponse>>(`${this.baseUrl}/login`, request);
   }
 }

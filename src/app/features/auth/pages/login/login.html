@@ -13,6 +13,9 @@
               class="form-control"
               placeholder="Enter email"
             />
+            @if (showErrors('email')) {
+              <p>{{ showErrors('email') }}</p>
+            }
           </div>
 
           <div class="mb-4">
@@ -23,6 +26,9 @@
               class="form-control"
               placeholder="Enter password"
             />
+            @if (showErrors('password')) {
+              <p>{{ showErrors('password') }}</p>
+            }
           </div>
 
           <button class="btn btn-primary w-100">Login</button>
