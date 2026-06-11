@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth-service';
 import { SnackBar } from '../../../../core/services/snack-bar';
 import { ApiResponse } from '../../../../core/models/api-response.model';
 import { LoginResponse } from '../../models/login-response.model';
+import { LoginUserStateService } from '../../../../core/state/login-user-state-service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class Login implements OnInit {
   private authService = inject(AuthService);
   private snackBar = inject(SnackBar);
   private fb = inject(FormBuilder);
+  private loginUserStateService = inject(LoginUserStateService);
 
   // Create FormGroup or form name
   loginForm!: FormGroup;
@@ -41,6 +43,7 @@ export class Login implements OnInit {
         if (response.success) {
           this.snackBar.showNotification(response.message, 'success');
         }
+        this.loginUserStateService.setUser(response.data);
       },
       error: (err) => {
         this.snackBar.showNotification(err.error.message, 'danger');
