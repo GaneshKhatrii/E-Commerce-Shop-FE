@@ -4,26 +4,13 @@
   </div>
 
   <div class="card">
-    <table class="table table-hover align-middle mb-0">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th>Role</th>
-          <th>Registered On</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>Ganesh Khatri</td>
-          <td>ganesh@gmail.com</td>
-          <td>9876543210</td>
-          <td>User</td>
-          <td>10 Jun 2026</td>
-        </tr>
-      </tbody>
-    </table>
+    <app-table
+      [columns]="columns"
+      [data]="usersList()"
+      [totalRecords]="totalRecords()"
+      [pageNumber]="pageNumber()"
+      [pageSize]="pageSize()"
+      (pageChange)="onPageChange($event)"
+    ></app-table>
   </div>
 </div>
