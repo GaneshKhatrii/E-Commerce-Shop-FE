@@ -1,0 +1,14 @@
+@use '../../../../../styles/variables' as *;
+
+.stat-card {
+  text-align: center;
+
+  h5 {
+    color: $text-secondary;
+  }
+
+  h2 {
+    color: $primary-color;
+    font-weight: 700;
+  }
+}

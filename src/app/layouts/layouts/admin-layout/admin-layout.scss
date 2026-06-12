@@ -1,0 +1,54 @@
+@use '../../../../styles/variables' as *;
+
+.admin-container {
+  height: 100vh;
+}
+
+.admin-sidebar {
+  width: 260px;
+  border-right: none;
+  background: $secondary-color;
+
+  a {
+    mat-icon {
+      color: white;
+    }
+    span {
+      color: white;
+    }
+  }
+}
+
+.sidebar-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  h4 {
+    margin: 0;
+    color: white;
+    font-weight: 600;
+  }
+}
+
+.admin-header {
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-inline: 1rem;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  .logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+}
+
+.admin-content {
+  padding: 1.5rem;
+  background: $background-color;
+  min-height: calc(100vh - 64px);
+}

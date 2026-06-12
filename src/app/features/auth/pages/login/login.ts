@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth-service';
 import { SnackBar } from '../../../../core/services/snack-bar';
@@ -18,6 +18,7 @@ export class Login implements OnInit {
   private snackBar = inject(SnackBar);
   private fb = inject(FormBuilder);
   private loginUserStateService = inject(LoginUserStateService);
+  private router = inject(Router);
 
   // Create FormGroup or form name
   loginForm!: FormGroup;
@@ -42,6 +43,7 @@ export class Login implements OnInit {
       next: (response: ApiResponse<LoginResponse>) => {
         if (response.success) {
           this.snackBar.showNotification(response.message, 'success');
+          this.router.navigate(['/admin/dashboard']);
         }
         this.loginUserStateService.setUser(response.data);
       },

@@ -4,7 +4,10 @@
 // Learn more about theming and how to use it for your application's
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
+@use './styles/variables' as *;
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@100..900&display=swap');
+
+// Importing variable styles
 
 html {
   height: 100%;
@@ -39,19 +42,6 @@ body {
   font-family: 'M PLUS 1', sans-serif;
 }
 /* You can add global styles to this file, and also import other style files */
-
-// Variables
-// Brand Colors
-$primary-color: #ff3f6c;
-$primary-hover-color: #e91e63;
-$secondary-color: #282c3f;
-$text-primary: #282c3f;
-$text-secondary: #535766;
-$background-color: #f5f5f6;
-$white: #ffffff;
-$border-color: #d4d5d9;
-$success-color: #03a685;
-$error-color: #ff5722;
 
 // Shadows
 $card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);

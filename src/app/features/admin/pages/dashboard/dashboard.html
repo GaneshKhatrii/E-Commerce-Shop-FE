@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <h1 class="primary-heading mb-4">Dashboard</h1>
+
+  <div class="row g-4">
+    <div class="col-lg-3 col-md-6">
+      <div class="card stat-card">
+        <h5>Total Users</h5>
+        <h2>{{ dashboardData()?.totalUsers }}</h2>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+      <div class="card stat-card">
+        <h5>Total Products</h5>
+        <h2>{{ dashboardData()?.totalProducts }}</h2>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+      <div class="card stat-card">
+        <h5>Total Orders</h5>
+        <h2>{{ dashboardData()?.totalOrders }}</h2>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+      <div class="card stat-card">
+        <h5>Total Revenue</h5>
+        <h2>{{ dashboardData()?.totalRevenue }}</h2>
+      </div>
+    </div>
+  </div>
+</div>
