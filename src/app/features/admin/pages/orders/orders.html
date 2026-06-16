@@ -2,35 +2,14 @@
   <h1 class="primary-heading mb-4">Orders</h1>
 
   <div class="card">
-    <table class="table table-hover align-middle mb-0">
-      <thead>
-        <tr>
-          <th>Order Id</th>
-          <th>Customer</th>
-          <th>Total</th>
-          <th>Status</th>
-          <th>Date</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>#ORD001</td>
-          <td>Ganesh Khatri</td>
-          <td>₹2499</td>
-
-          <td>
-            <span class="badge bg-success"> Delivered </span>
-          </td>
-
-          <td>10 Jun 2026</td>
-
-          <td>
-            <button class="btn btn-primary btn-sm">View</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <app-table
+      [pageNumber]="pageNumber()"
+      [pageSize]="pageSize()"
+      [totalRecords]="totalRecords()"
+      [data]="ordersList()"
+      [columns]="columns"
+      (pageChange)="onPageChange($event)"
+      (rowChange)="onRowChange($event)"
+    ></app-table>
   </div>
 </div>

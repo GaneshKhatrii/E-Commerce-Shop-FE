@@ -1,53 +1,176 @@
 <div class="container-fluid">
+  <!-- Page Heading -->
   <h1 class="primary-heading mb-4">Order Details</h1>
 
   <div class="row g-4">
+    <!-- Customer Information -->
     <div class="col-lg-6">
       <div class="card">
-        <h5 class="secondary-heading mb-3">Customer Details</h5>
+        <h5 class="secondary-heading mb-4">Customer Details</h5>
 
-        <p><strong>Name:</strong> Ganesh Khatri</p>
+        <p>
+          <strong>Name:</strong>
+          {{ orderDetails()?.customerName }}
+        </p>
 
-        <p><strong>Email:</strong> ganesh@gmail.com</p>
+        <p>
+          <strong>Email:</strong>
+          {{ orderDetails()?.customerEmail }}
+        </p>
 
-        <p><strong>Phone:</strong> 9876543210</p>
+        <p>
+          <strong>Phone:</strong>
+          {{ orderDetails()?.phoneNumber }}
+        </p>
       </div>
     </div>
 
+    <!-- Order Information -->
     <div class="col-lg-6">
       <div class="card">
-        <h5 class="secondary-heading mb-3">Order Information</h5>
+        <h5 class="secondary-heading mb-4">Order Information</h5>
 
-        <p><strong>Order Id:</strong> #ORD001</p>
+        <p>
+          <strong>Order Id:</strong>
+          {{ orderDetails()?.orderId }}
+        </p>
 
-        <p><strong>Status:</strong> Delivered</p>
+        <p>
+          <strong>Status:</strong>
 
-        <p><strong>Total:</strong> ₹2499</p>
+          <!-- Status badge -->
+          <span
+            class="status-badge"
+            [class.pending]="orderDetails()?.status === 'Pending'"
+            [class.delivered]="orderDetails()?.status === 'Delivered'"
+          >
+            {{ orderDetails()?.status }}
+          </span>
+        </p>
+
+        <p>
+          <strong>Order Date:</strong>
+          {{ orderDetails()?.createdAt | date: 'medium' }}
+        </p>
+
+        <p>
+          <strong>Total:</strong>
+          {{ orderDetails()?.totalAmount | currency: 'INR' }}
+        </p>
       </div>
     </div>
   </div>
 
+  <!--  SHIPPING ADDRESS -->
   <div class="card mt-4">
-    <h5 class="secondary-heading mb-3">Ordered Products</h5>
+    <h5 class="secondary-heading mb-4">Shipping Address</h5>
+
+    <div class="address-container">
+      <p>
+        {{ orderDetails()?.addAddressLine1 }}
+      </p>
+
+      <p>
+        {{ orderDetails()?.addressLine2 }}
+      </p>
+
+      <p>
+        {{ orderDetails()?.city }},
+        {{ orderDetails()?.state }}
+      </p>
+
+      <p>
+        {{ orderDetails()?.country }}
+        -
+        {{ orderDetails()?.postalCode }}
+      </p>
+    </div>
+  </div>
+
+  <!-- ORDER ITEMS -->
+  <div class="card mt-4">
+    <h5 class="secondary-heading mb-4">Ordered Products</h5>
 
     <table class="table align-middle">
       <thead>
         <tr>
+          <th>Image</th>
+
           <th>Product</th>
-          <th>Price</th>
+
           <th>Quantity</th>
+
+          <th>Unit Price</th>
+
           <th>Total</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr>
-          <td>Men's Shirt</td>
-          <td>₹999</td>
-          <td>2</td>
-          <td>₹1998</td>
-        </tr>
+        @for (item of orderDetails()?.orderItems; track item.productVariantId) {
+          <tr>
+            <!-- Product Image -->
+            <td><img [src]="item.imageUrl" alt="Product Image" class="product-image" /></td>
+
+            <!-- Product Details -->
+            <td>
+              <div>
+                <b>{{ item.productName }}</b>
+              </div>
+
+              <small class="text-muted"> Size: {{ item.size }} | Color: {{ item.color }} </small>
+            </td>
+
+            <td>{{ item.quantity }}</td>
+
+            <td>{{ item.unitPrice | currency: 'INR' }}</td>
+
+            <td>{{ item.subTotal | currency: 'INR' }}</td>
+          </tr>
+        }
       </tbody>
     </table>
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div class="card mt-4">
+    <h5 class="secondary-heading mb-4">Order Summary</h5>
+
+    <div class="order-summary">
+      <div>
+        <span>Items Total</span>
+
+        <span>
+          {{ orderDetails()?.totalAmount | currency: 'INR' }}
+        </span>
+      </div>
+
+      <div>
+        <span>Shipping</span>
+
+        <span>Free</span>
+      </div>
+
+      <div class="grand-total">
+        <span>Total</span>
+
+        <span>
+          {{ orderDetails()?.totalAmount | currency: 'INR' }}
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================
+       ADMIN ACTIONS
+       ========================= -->
+  <div class="card mt-4">
+    <h5 class="secondary-heading mb-4">Actions</h5>
+
+    <div class="d-flex gap-2">
+      <button class="btn btn-primary">Mark As Delivered</button>
+
+      <button class="btn btn-secondary">Print Invoice</button>
+    </div>
   </div>
 </div>

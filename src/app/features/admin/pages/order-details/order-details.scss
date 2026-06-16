@@ -1,4 +1,70 @@
+/* Label styling */
 strong {
-  min-width: 100px;
+  min-width: 120px;
   display: inline-block;
+}
+
+/* Status badge base style */
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Pending Status */
+.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+/* Delivered Status */
+.delivered {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+/* Product image */
+.product-image {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Address spacing */
+.address-container p {
+  margin-bottom: 8px;
+}
+
+/* Table alignment */
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+/* Order summary card */
+.order-summary {
+  div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+}
+
+/* Grand total row */
+.grand-total {
+  border-top: 1px solid #ddd;
+  padding-top: 12px;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* Small hover effect */
+.card {
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
 }

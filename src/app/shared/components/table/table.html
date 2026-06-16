@@ -11,7 +11,33 @@
     @for (row of data; track row.id) {
       <tr>
         @for (col of columns; track $index) {
-          <td>{{ row[col.key] }}</td>
+          <td>
+            @if (col.isAction) {
+              <button
+                (click)="onRowChange(row.id, row.name, 'view')"
+                class="btn btn-primary btn-sm"
+              >
+                View
+              </button>
+            } @else if (col.pipe === 'date') {
+              {{ row[col.key] | date }}
+            } @else if (col.pipe === 'currency') {
+              {{ row[col.key] | currency: 'INR' }}
+            } @else if (col.key === 'status') {
+              <mat-form-field appearance="outline">
+                <mat-select
+                  [value]="row.statusId"
+                  (selectionChange)="onRowChange(row.id, row.name, 'status-change', $event.value)"
+                >
+                  @for (status of orderStatuses; track status.id) {
+                    <mat-option [value]="status.id">{{ status.name }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            } @else {
+              {{ row[col.key] }}
+            }
+          </td>
         }
       </tr>
     }
