@@ -1,0 +1,71 @@
+<h1 class="primary-heading mb-4">Add Product</h1>
+
+<mat-stepper #stepper linear>
+  <!-- STEP 1 : PRODUCT INFORMATION -->
+  <mat-step label="Product Information">
+    <div class="mt-4">
+      <p class="section-heading mt-3">Product Details</p>
+
+      <form [formGroup]="productInfoForm" (ngSubmit)="onSaveProductInfo()" class="row mt-3">
+        <!-- Product Name -->
+        <div class="col-md-6 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Product Name</mat-label>
+            <input formControlName="name" matInput placeholder="Enter product name" />
+          </mat-form-field>
+        </div>
+
+        <!-- Brand -->
+        <div class="col-md-6 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Brand</mat-label>
+
+            <mat-select formControlName="brandId">
+              @for (brand of brands(); track brand.id) {
+                <mat-option [value]="brand.id"> {{ brand.name }} </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Category -->
+        <div class="col-md-6 mb-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="productCategoryId">
+              @for (catergory of categories(); track catergory.id) {
+                <mat-option [value]="catergory.id"> {{ catergory.name }} </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Description -->
+        <div class="col-12">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Description</mat-label>
+            <textarea
+              formControlName="description"
+              matInput
+              rows="5"
+              placeholder="Enter product description"
+            ></textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <button class="btn btn-primary float-end" color="primary">Save & Continue</button>
+        </div>
+      </form>
+    </div>
+  </mat-step>
+
+  <!-- STEP 2 -->
+  <mat-step label="Variants">
+    <p class="body-text">Product variants will be added here.</p>
+  </mat-step>
+
+  <!-- STEP 3 -->
+  <mat-step label="Images">
+    <p class="body-text">Product images upload screen.</p>
+  </mat-step>
+</mat-stepper>

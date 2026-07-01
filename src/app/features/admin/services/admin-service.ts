@@ -10,20 +10,23 @@ import { IOrderDetails } from '../models/order-details-response.model';
 
 @Service()
 export class AdminService {
-  baseUrl = `${environment.apiUrl}/admin`;
+  baseUrl = `${environment.apiUrl}`;
 
   private http = inject(HttpClient);
 
+  // Dashboard Module
   getDashboardData() {
-    return this.http.get<ApiResponse<IDashboard>>(`${this.baseUrl}/dashboard`);
+    return this.http.get<ApiResponse<IDashboard>>(`${this.baseUrl}/admin/dashboard`);
   }
 
+  // Users Module
   getUsers(pageNumber: number, pageSize: number) {
     return this.http.get<ApiResponse<PagedResult<IUser>>>(
-      `${this.baseUrl}/users?pageNumber=${pageNumber}&pageSize=${pageSize}`,
+      `${this.baseUrl}/admin/users?pageNumber=${pageNumber}&pageSize=${pageSize}`,
     );
   }
 
+  // Orders Module
   getOrders(pageNumber: number, pageSize: number) {
     return this.http.get<ApiResponse<PagedResult<IOrders>>>(
       `${this.baseUrl}/orders?pageNumber=${pageNumber}&pageSize=${pageSize}`,
@@ -38,5 +41,11 @@ export class AdminService {
     return this.http.patch<ApiResponse<null>>(`${this.baseUrl}/orders/${orderId}/status`, {
       status: statusId,
     });
+  }
+
+  // Products Module
+  // https://localhost:7160/api/Product/add-product
+  addProduct() {
+    // return this.http.post();
   }
 }

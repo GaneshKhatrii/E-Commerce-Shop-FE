@@ -20,7 +20,16 @@ export const AdminRoutes: Routes = [
   },
   {
     path: 'products',
-    loadComponent: () => import('./pages/products/products').then((c) => c.Products),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./pages/products/products').then((c) => c.Products),
+      },
+      {
+        path: 'add',
+        loadComponent: () => import('./pages/add-product/add-product').then((c) => c.AddProduct),
+      },
+    ],
   },
   {
     path: 'users',

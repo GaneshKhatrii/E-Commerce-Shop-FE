@@ -26,7 +26,7 @@
     <div class="col-lg-3 col-md-6">
       <div class="card stat-card">
         <h5>Total Revenue</h5>
-        <h2>{{ dashboardData()?.totalRevenue }}</h2>
+        <h2>{{ dashboardData()?.totalRevenue | currency: 'INR' }}</h2>
       </div>
     </div>
   </div>

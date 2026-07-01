@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { AdminService } from '../../services/admin-service';
 import { IDashboard } from '../../models/dashboard-response.model';
 import { ApiResponse } from '../../../../core/models/api-response.model';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [],
+  imports: [CurrencyPipe],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })
