@@ -19,6 +19,20 @@
               >
                 View
               </button>
+
+              <button
+                (click)="onRowChange(row.id, row.name, 'edit')"
+                class="btn btn-primary btn-sm ms-2"
+              >
+                Edit
+              </button>
+
+              <button
+                (click)="onRowChange(row.id, row.name, 'delete')"
+                class="btn btn-primary btn-sm ms-2"
+              >
+                Delete
+              </button>
             } @else if (col.pipe === 'date') {
               {{ row[col.key] | date }}
             } @else if (col.pipe === 'currency') {

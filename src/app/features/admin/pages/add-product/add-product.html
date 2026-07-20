@@ -1,4 +1,13 @@
-<h1 class="primary-heading mb-4">Add Product</h1>
+<h1 class="primary-heading mb-4">
+  @if (mode() === 'view') {
+    View
+  } @else if (mode() == 'edit') {
+    Update
+  } @else {
+    Add
+  }
+  Product
+</h1>
 
 <mat-stepper #stepper linear>
   <!-- STEP 1 : PRODUCT INFORMATION -->
@@ -53,7 +62,9 @@
           </mat-form-field>
         </div>
         <div>
-          <button class="btn btn-primary float-end" color="primary">Save & Continue</button>
+          <button class="btn btn-primary float-end" color="primary">
+            {{ mode() === 'view' ? 'Next' : 'Save & Continue' }}
+          </button>
         </div>
       </form>
     </div>

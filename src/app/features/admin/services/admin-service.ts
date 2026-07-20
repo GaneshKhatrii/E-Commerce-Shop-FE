@@ -7,26 +7,27 @@ import { IUser } from '../models/users-response.model';
 import { PagedResult } from '../../../core/models/paged-response.model';
 import { IOrders } from '../models/orders-list-response.model';
 import { IOrderDetails } from '../models/order-details-response.model';
+import { IProduct, IProductsList } from '../models/product.model';
 
 @Service()
 export class AdminService {
-  baseUrl = `${environment.apiUrl}`;
+  baseUrl = `${environment.apiUrl}/admin`;
 
   private http = inject(HttpClient);
 
-  // Dashboard Module
+  // Dashboard
   getDashboardData() {
-    return this.http.get<ApiResponse<IDashboard>>(`${this.baseUrl}/admin/dashboard`);
+    return this.http.get<ApiResponse<IDashboard>>(`${this.baseUrl}/dashboard`);
   }
 
-  // Users Module
+  // Users
   getUsers(pageNumber: number, pageSize: number) {
     return this.http.get<ApiResponse<PagedResult<IUser>>>(
-      `${this.baseUrl}/admin/users?pageNumber=${pageNumber}&pageSize=${pageSize}`,
+      `${this.baseUrl}/users?pageNumber=${pageNumber}&pageSize=${pageSize}`,
     );
   }
 
-  // Orders Module
+  // Orders
   getOrders(pageNumber: number, pageSize: number) {
     return this.http.get<ApiResponse<PagedResult<IOrders>>>(
       `${this.baseUrl}/orders?pageNumber=${pageNumber}&pageSize=${pageSize}`,
@@ -43,9 +44,18 @@ export class AdminService {
     });
   }
 
-  // Products Module
-  // https://localhost:7160/api/Product/add-product
-  addProduct() {
-    // return this.http.post();
+  // Products
+  getProducts(pageNumber: number, pageSize: number) {
+    return this.http.get<ApiResponse<PagedResult<IProductsList>>>(
+      `${this.baseUrl}/products?pageNumber=${pageNumber}&pageSize=${pageSize}`,
+    );
+  }
+
+  addProduct(product: IProduct) {
+    return this.http.post<ApiResponse<string>>(`${this.baseUrl}/products`, product);
+  }
+
+  getProductById(productId: string) {
+    return this.http.get<ApiResponse<IProduct>>(`${this.baseUrl}/products/${productId}`);
   }
 }

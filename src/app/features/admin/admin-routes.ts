@@ -27,6 +27,17 @@ export const AdminRoutes: Routes = [
       },
       {
         path: 'add',
+        data: { mode: 'Add' },
+        loadComponent: () => import('./pages/add-product/add-product').then((c) => c.AddProduct),
+      },
+      {
+        path: 'view/:id',
+        data: { mode: 'view' },
+        loadComponent: () => import('./pages/add-product/add-product').then((c) => c.AddProduct),
+      },
+      {
+        path: ':id',
+        data: { mode: 'edit' },
         loadComponent: () => import('./pages/add-product/add-product').then((c) => c.AddProduct),
       },
     ],
